@@ -1,0 +1,25 @@
+<div *ngIf="!menu">
+  <p>Loading...</p>
+</div>
+<div *ngIf="menu">
+  <h2>{{ menu.title }}</h2>
+  <img [src]="menu.image" alt="{{ menu.title }}" />
+  <p>{{ menu.description }}</p>
+  <div *ngIf="menu.mark == 0; else hasMark">
+    Aucune note n'est attribuée à ce menu
+  </div>
+  <ng-template #hasMark>
+    <div>
+      Mark : {{ menu.mark }}
+    </div>
+  </ng-template>
+  <form #f="ngForm">
+    <input type="number" name="newMark" [(ngModel)]="newMark" #newM="ngModel" min="1" max="5"/>
+    <div style="color : red;" *ngIf="newM.invalid && newM.touched && newM.dirty">
+      La note doit etre entre 1 et 5
+    </div>
+    <div>
+      <input type="submit" value="Noter" [disabled]="f.invalid" (click)="noter()">
+    </div>
+  </form>
+</div>

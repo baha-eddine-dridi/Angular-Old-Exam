@@ -1,0 +1,8 @@
+<h2>Mes Reservations</h2>
+<div *ngFor="let reservation of myReservations">
+  <h2>{{ reservation.title }}</h2>
+  <img [src]="reservation.image" alt="{{ reservation.title }}"/>
+  <div>
+    <a [routerLink]="['/menuDetails', reservation.id]">Details</a>
+</div>
+</div>

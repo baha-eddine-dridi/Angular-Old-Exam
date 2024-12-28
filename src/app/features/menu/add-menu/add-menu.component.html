@@ -1,0 +1,19 @@
+<h1>Menu à proposer</h1>
+<form [formGroup]="newMenu">
+  <div>
+    <label>Titre</label>
+    <input type="text" formControlName="title">
+    <div *ngIf="newMenu.get('title')?.invalid && newMenu.get('title')?.touched && newMenu.get('title')?.dirty" style="color: red">
+      ce champ est obligatoire
+    </div>
+  </div>
+  <div>
+    <label>Description</label>
+    <textarea formControlName="description"></textarea>
+    <div *ngIf="newMenu.get('description')?.invalid && newMenu.get('description')?.touched && newMenu.get('description')?.dirty" style="color: red">
+      <p *ngIf="newMenu.get('description')?.errors?.['required']">ce champ et obligatoire</p>
+      <p *ngIf="newMenu.get('description')?.errors?.['minlength']">min 10 caracteres</p>
+    </div>
+  </div>
+  <input type="submit" [disabled]="newMenu.invalid" (click)="addNewMenu()" value="Ajouter">
+</form>

@@ -1,0 +1,8 @@
+<div>
+  <h2>{{ menu.title }}</h2>
+  <img [src]="menu.image" alt="{{ menu.title }}"/>
+  <div>
+    <a [routerLink]="['/menuDetails', menu.id]">Details</a>
+    <button (click)="reserver()">Réserver</button>
+  </div>
+</div>
